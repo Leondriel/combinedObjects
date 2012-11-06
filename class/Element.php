@@ -16,15 +16,15 @@ abstract class Element {
 		foreach($this->needs as $need => $needInfo) {
 			if($needInfo['chance'] >= $rand) {
 				$this->say('Asking for ' . $need);
-				foreach($neighbours as $neighbour) {
+				foreach($this->neighbours as $neighbour) {
 					$answer = call_user_func(array($neighbour, 'ask'), $need);
-					$this->say($neighbour . ' told me ' . $result);
+					$this->say($neighbour . ' told me ' . $answer);
 					if($answer == self::NOT_OFFERING) {
 						if(!isset($this->reliability[$need])) {
 							$this->reliability[$need] = array();
 						}
 						$this->reliability[$need][$neighbour] = 0;
-					} elseif($this->evaluate($need, $neighbour, $result) >= $needInfo['prio']) {
+					} elseif($this->evaluate($need, $neighbour, $answer) >= $needInfo['prio']) {
 						$this->say("Thanks!");
 						break 1;
 					} else {
