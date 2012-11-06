@@ -1,5 +1,5 @@
 <?php
-class Element_Brain extends Element {
+class Element_Watch extends Element {
 
 	public function ask($need) {
 		switch($need) {
