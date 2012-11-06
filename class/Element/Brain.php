@@ -17,34 +17,16 @@ class Element_Brain extends Element {
 		return self::NOT_OFFERING;
 	}
 	
-	protected function evaluate($need, $neighbour, $answer) {
-		if(!isset($this->reliability[$need])) {
-			$this->reliability[$need] = array();
-		}
-		if($answer == self::NOT_OFFERING) {
-			$this->reliability[$need][$neighbour] = 0;
-		} else {
-			switch($need) {
-			case 'time':
-				$this->evaluateTime($need, $neighbour, $answer);
-				break 1;
-			default:
-				$this->reliability[$need][$neighbour] = 0;
-			}
-		}
-		return $this->reliability[$need][$neighbour];
-	}
-	
-	protected function evaluateTime($need, $neighbour, $answer) {
+	protected function evaluateTime($answer) {
 		if(preg_match('/[0-9]{2}:[0-9]{2}:[0-9]{2}/', $answer)) {
-			$this->reliability[$need][$neighbour] = 100;
+			return 100;
 		} elseif(preg_match('/[0-9]{2}:[0-9]{2}/', $answer)) {
-			$this->reliability[$need][$neighbour] = 50;
-
+			return 50;
+		} elseif(preg_match('/[0-9]{2}', $answer)) {
+			return 10;
 		} else {
-			$this->reliability[$need][$neighbour] = 0;
+			return 0;
 		}
-		return $this;
 	}
 }
 ?>

@@ -56,8 +56,20 @@ abstract class Element {
 		return $this;
 	}
 	
-	abstract public function ask($need);
+	public function ask($need) {
+		if(method_exists($this, 'answer' . ucfirst($need))) {
+			return call_user_func(array($this, 'answer' . ucfirst($need)));
+		} else {
+			return self::NOT_OFFERING;
+		}
+	}
 	
-	abstract protected function evaluate($need, $neighbour, $answer);
+	protected function evaluate($need, $neighbour, $answer) {
+		if(!isset($this->reliability[$need])) {
+			$this->reliability[$need] = array();
+		}
+		$this->reliability[$need][$neighbour] = call_user_func(array($this, 'evaluate' . ucfirst($need)), $answer);
+		return $this->reliability[$need][$neighbour];
+	}
 }
 ?>
