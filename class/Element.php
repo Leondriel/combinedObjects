@@ -18,10 +18,20 @@ abstract class Element {
 	
 	public function tick() {
 		$rand = rand(1,100);
-		foreach($this->needs as $need => $needInfo) {
-			if($needInfo['chance'] >= $rand) {
+		foreach($this->needs as $need => &$needInfo) {
+			$needInfo['urgency']+= $needInfo['riseUrgency'];
+			if($needInfo['urgency'] >= $rand) {
 				$this->say('Asking for ' . $need);
 				foreach($this->neighbours as $neighbour) {
+					if(isset($this->reliability[$need]) && isset($this->reliability[$need][$neighbour])) {
+						if($this->reliability[$need][$neighbour] < $need['prio']) {
+							if($this->reliability[$need][$neighbour] < ($need['prio'] - $need['urgency'])) {
+								continue;
+							} else {
+								$this->say('I need ' . $need . 'so much that I even ask ' . $neighbour);
+							}
+						}
+					}					
 					$answer = $this->Registry->getInstance($neighbour)->ask($need);
 					$this->say($neighbour . ' told me ' . $answer);
 					if($answer == self::NOT_OFFERING) {

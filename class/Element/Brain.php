@@ -3,8 +3,9 @@ class Element_Brain extends Element {
 	
 	protected $needs = array(
 		'time' => array(
-			'chance' => 10,
-			'prio' => 100
+			'prio' => 100,
+			'urgency' => 0,
+			'riseUrgency' => 5
 		)
 	);
 
