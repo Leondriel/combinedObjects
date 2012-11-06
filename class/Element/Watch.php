@@ -13,6 +13,7 @@ class Element_Watch extends Element {
 			$this->reliability[$need] = array();
 		}
 		$this->reliability[$need][$neighbour] = 0;
+		return $this->reliability[$need][$neighbour];
 	}
 }
 ?>
