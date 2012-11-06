@@ -32,10 +32,10 @@ class Element_Brain extends Element {
 	}
 	
 	protected function evaluateTime($need, $neighbour, $answer) {
-		if(preg_match('/[0-9]{2}:[0-9]{2}:[0-9]{2}/')) {
+		if(preg_match('/[0-9]{2}:[0-9]{2}:[0-9]{2}/', $answer)) {
 			$this->reliability[$need][$neighbour] = 100;
 			$this->say("Thank you very much!");
-		} elseif(preg_match('/[0-9]{2}:[0-9]{2}/')) {
+		} elseif(preg_match('/[0-9]{2}:[0-9]{2}/', $answer)) {
 			$this->reliability[$need][$neighbour] = 50;
 
 		} else {
