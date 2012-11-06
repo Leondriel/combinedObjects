@@ -6,9 +6,14 @@ abstract class Element {
 	protected $offers = array();
 	protected $neighbours = array();
 	protected $reliability = array();
+	protected $Registry;
 	
 	protected function say($text) {
 		echo get_class($this) . ': ' . $text . "\n";
+	}
+	
+	public function __construct($Registry) {
+		$this->Registry = $Registry;
 	}
 	
 	public function tick() {
@@ -17,7 +22,7 @@ abstract class Element {
 			if($needInfo['chance'] >= $rand) {
 				$this->say('Asking for ' . $need);
 				foreach($this->neighbours as $neighbour) {
-					$answer = call_user_func(array($neighbour, 'ask'), $need);
+					$answer = $this->Registry->getInstance($neighbour)->ask($need);
 					$this->say($neighbour . ' told me ' . $answer);
 					if($answer == self::NOT_OFFERING) {
 						if(!isset($this->reliability[$need])) {

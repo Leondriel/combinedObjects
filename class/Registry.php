@@ -8,8 +8,8 @@ class Registry {
 	
 	public function __construct() {
 		$this->Elements = array(
-			'Brain' => new Element_Brain,
-			'Watch' => new Element_Watch
+			'Brain' => new Element_Brain($this),
+			'Watch' => new Element_Watch($this)
 		);
 	}
 	
