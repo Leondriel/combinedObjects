@@ -26,9 +26,12 @@ class Element_Brain extends Element {
 			switch($need) {
 			case 'time':
 				$this->evaluateTime($need, $neighbour, $answer);
+				break 1;
+			default:
+				$this->reliability[$need][$neighbour] = 0;
 			}
 		}
-		return $this;
+		return $this->reliability[$need][$neighbour];
 	}
 	
 	protected function evaluateTime($need, $neighbour, $answer) {
@@ -40,7 +43,7 @@ class Element_Brain extends Element {
 		} else {
 			$this->reliability[$need][$neighbour] = 0;
 		}
-		return $this->reliability[$need][$neighbour];
+		return $this;
 	}
 }
 ?>
