@@ -8,7 +8,7 @@ abstract class Element {
 	protected $reliability = array();
 	
 	protected function say($text) {
-		echo $text;
+		echo get_class($this) . ': ' . $text . "\n";
 	}
 	
 	public function tick() {
@@ -41,8 +41,8 @@ abstract class Element {
 		return $this;
 	}
 	
-	public function ask($need);
+	abstract public function ask($need);
 	
-	protected function evaluate($need, $neighbour, $answer);
+	abstract protected function evaluate($need, $neighbour, $answer);
 }
 ?>
