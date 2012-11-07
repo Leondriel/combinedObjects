@@ -7,5 +7,9 @@ class Element_Watch extends Element {
 			return date('H');
 		}
 	}
+	
+	protected function init() {
+		
+	}
 }
 ?>
