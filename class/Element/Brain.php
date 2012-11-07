@@ -1,20 +1,18 @@
 <?php
 class Element_Brain extends Element {
 	
-	protected $needs = array(
-		'time' => array(
-			'prio' => 100,
-			'urgency' => 0,
-			'riseUrgency' => 5
-		)
-	);
-
-	protected $neighbours = array(
-		'Watch'
-	);
-	
 	public function ask($need) {
 		return self::NOT_OFFERING;
+	}
+	
+	protected function init() {
+		$this->setDefault(self::KEY_NEEDS, array(
+			new Need_Time(50, 10)
+		));
+		
+		$this->setDefault(self::KEY_NEIGHBOURS, array(
+			'Watch'
+		));
 	}
 	
 	protected function evaluateTime($answer) {
