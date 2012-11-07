@@ -86,6 +86,7 @@ abstract class Element {
 						$reliability[$Need->getName()][$neighbour] = 0;
 					} elseif($this->evaluate($Need->getName(), $neighbour, $answer, $reliability) >= $Need->getPrio()) {
 						$this->say("Thanks!");
+						$Need->resetName();
 						break 1;
 					} else {
 						$this->say("You didn't help");

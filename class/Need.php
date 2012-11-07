@@ -31,5 +31,10 @@ class Need {
 		$this->urgency+= $this->riseUrgency;
 		return $this;
 	}
+	
+	public function resetUrgency() {
+		$this->urgency = 0;
+		return $this;
+	}
 }
 ?>
