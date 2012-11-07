@@ -7,12 +7,22 @@ class Element_Brain extends Element {
 	
 	protected function init() {
 		$this->setDefault(self::KEY_NEEDS, array(
-			new Need_Time(50, 10)
+			new Need_Time(50, 10),
+			new Need_Light(10, 0.5)
 		));
 		
 		$this->setDefault(self::KEY_NEIGHBOURS, array(
-			'Watch'
+			'Watch',
+			'Sun'
 		));
+	}
+	
+	protected function evaluateLight($answer) {
+		if($answer == 'Sunlight') {
+			return 75;
+		} else {
+			return 0;
+		}
 	}
 	
 	protected function evaluateTime($answer) {

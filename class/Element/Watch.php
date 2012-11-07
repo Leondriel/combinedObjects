@@ -6,7 +6,9 @@ class Element_Watch extends Element {
 	}
 	
 	protected function init() {
-		
+		$this->setDefault(self::KEY_NEIGHBOURS, array(
+			'Brain'
+		));
 	}
 }
 ?>

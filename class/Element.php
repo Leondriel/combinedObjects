@@ -78,7 +78,7 @@ abstract class Element {
 						}
 					}					
 					$answer = $this->Registry->getInstance($neighbour)->ask($Need->getName());
-					$this->say($neighbour . ' told me ' . $answer);
+					$this->say($neighbour . ' offered me ' . $answer);
 					if($answer == self::NOT_OFFERING) {
 						if(!isset($reliability[$Need->getName()])) {
 							$reliability[$need] = array();
@@ -89,7 +89,7 @@ abstract class Element {
 						$Need->resetUrgency();
 						break 1;
 					} else {
-						$this->say("You didn't help");
+						$this->say("Nice try.");
 					}
 				}
 			}

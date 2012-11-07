@@ -3,9 +3,9 @@ require_once 'class/Registry.php';
 
 $Registry = new Registry();
 
-$Registry
+/*$Registry
 	->link('Brain', 'Watch')
-;
+;*/
 
 while(true) {
 	$Registry->tick();
