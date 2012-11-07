@@ -1,10 +1,7 @@
 <?php
-require_once 'class/Element.php';
-require_once 'class/Element/Brain.php';
-require_once 'class/Element/Watch.php';
-
-require_once 'class/Need.php';
-require_once 'class/Need/Time.php';
+function __autoload($className) {
+	require_once 'class/' . str_replace('_', '/', $className) . '.php';
+}
 
 class Registry {
 	protected $Elements = array();
