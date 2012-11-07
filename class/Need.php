@@ -28,7 +28,7 @@ class Need {
 	}
 	
 	public function incrementUrgency() {
-		$this->urgency+= $riseUrgency;
+		$this->urgency+= $this->riseUrgency;
 		return $this;
 	}
 }
